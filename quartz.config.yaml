@@ -16,7 +16,9 @@ configuration:
     cdnCaching: true
     # Fonts matched to jzhao.xyz. (title inherits the header font.)
     typography:
-      header: DM Serif Display
+      header:
+        name: DM Serif Display
+        weights: [400] # DM Serif Display ships only a 400 weight (no 700)
       body: Bricolage Grotesque
       code: JetBrains Mono
     # Palette matched to jzhao.xyz ("komorebi" theme): warm cream light mode, deep-navy dark mode.
