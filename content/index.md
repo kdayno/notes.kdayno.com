@@ -1,8 +1,10 @@
 ---
-title: notes.kdayno.com
+title: kd
 ---
+![](./images/japanese-maple-leaves.gif)
+<br>
 
-Hi, I'm Manny. 🌱
+Hi, I'm Kevin. 🌱
 
 This is my digital garden — a small, growing collection of notes, ideas, and
 things I'm learning. It starts mostly empty on purpose; I'll plant and tend to

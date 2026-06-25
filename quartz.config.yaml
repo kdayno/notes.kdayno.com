@@ -14,31 +14,35 @@ configuration:
   theme:
     fontOrigin: googleFonts
     cdnCaching: true
+    # Fonts matched to jzhao.xyz. (title inherits the header font.)
     typography:
-      header: Schibsted Grotesk
-      body: Source Sans Pro
-      code: IBM Plex Mono
+      header:
+        name: DM Serif Display
+        weights: [400] # DM Serif Display ships only a 400 weight (no 700)
+      body: Bricolage Grotesque
+      code: JetBrains Mono
+    # Palette matched to jzhao.xyz ("komorebi" theme): warm cream light mode, deep-navy dark mode.
     colors:
       lightMode:
-        light: "#faf8f8"
-        lightgray: "#e5e5e5"
-        gray: "#b8b8b8"
-        darkgray: "#4e4e4e"
-        dark: "#2b2b2b"
-        secondary: "#284b63"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
-        textHighlight: "#fff23688"
+        light: "#f5eedd"
+        lightgray: "#e3d9c0"
+        gray: "#9a8e76"
+        darkgray: "#2d4673"
+        dark: "#16294e"
+        secondary: "#284d78"
+        tertiary: "#c8482b"
+        highlight: "#c8482b1a"
+        textHighlight: "#f4c84b88"
       darkMode:
-        light: "#161618"
-        lightgray: "#393639"
-        gray: "#646464"
-        darkgray: "#d4d4d4"
-        dark: "#ebebec"
-        secondary: "#7b97aa"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
-        textHighlight: "#b3aa0288"
+        light: "#06182f"
+        lightgray: "#122845"
+        gray: "#7191b8"
+        darkgray: "#caddf4"
+        dark: "#eef4fc"
+        secondary: "#8fb9de"
+        tertiary: "#e0552f"
+        highlight: "#e0552f24"
+        textHighlight: "#c9542f55"
 plugins:
   - source: github:quartz-community/created-modified-date
     enabled: true
@@ -97,8 +101,11 @@ plugins:
   - source: github:quartz-community/roam
     enabled: false
     order: 92
+  # Disabled: this plugin ignores theme.typography (it only reads fonts from the separate
+  # QuartzTheme plugin, which isn't installed) and would emit a duplicate, stale font request.
+  # Core Quartz already loads + sets CSS vars from theme.typography above.
   - source: github:quartz-community/fonts
-    enabled: true
+    enabled: false
   - source: github:quartz-community/remove-draft
     enabled: true
   - source: github:quartz-community/explicit-publish
@@ -147,7 +154,7 @@ plugins:
       position: left
       priority: 50
   - source: github:quartz-community/graph
-    enabled: true
+    enabled: false
     layout:
       position: right
       priority: 10
@@ -158,7 +165,7 @@ plugins:
       priority: 20
       group: toolbar
       groupOptions:
-        grow: true
+        grow: false
   - source: github:quartz-community/backlinks
     enabled: true
     layout:
@@ -169,11 +176,13 @@ plugins:
     layout:
       position: beforeBody
       priority: 10
+      condition: not-index
   - source: github:quartz-community/content-meta
     enabled: true
     layout:
       position: beforeBody
       priority: 20
+      condition: not-index
   - source: github:quartz-community/tag-list
     enabled: false
     layout:
@@ -184,6 +193,7 @@ plugins:
     layout:
       position: left
       priority: 10
+      group: toolbar
   - source: github:quartz-community/darkmode
     enabled: true
     layout:
@@ -191,7 +201,7 @@ plugins:
       priority: 30
       group: toolbar
   - source: github:quartz-community/reader-mode
-    enabled: true
+    enabled: false
     layout:
       position: left
       priority: 35
@@ -224,8 +234,11 @@ plugins:
     order: 25
     layout:
       position: left
-      priority: 25
-      display: mobile-only
+      priority: 15
+      group: toolbar
+      groupOptions:
+        grow: true
+      display: all
   - source: github:quartz-community/bases-page
     enabled: true
     options: {}

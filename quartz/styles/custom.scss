@@ -1,3 +1,43 @@
 @use "./variables.scss" as *;
 
 // put your custom CSS here!
+
+// Icon-only search: strip the bordered "bar" box so only the magnifying-glass icon shows.
+// (The default .search-button has a border, full width, and padding — see the search
+// plugin's search.scss. !important is needed because that component CSS loads after this
+// file, so an equal-specificity override would otherwise lose the cascade.)
+.search > .search-button {
+  border: none !important;
+  width: auto !important;
+  padding: 0 !important;
+
+  & p {
+    display: none !important;
+  }
+
+  & svg {
+    width: 16px !important;
+    min-width: 16px !important;
+    margin: 0 !important;
+  }
+}
+
+// Shrink the site title (default 1.75rem) so it fits on one row with the toolbar icons
+// instead of pushing them off the edge of the left sidebar. !important beats the
+// page-title component CSS, which loads after this file.
+.page-title {
+  font-size: calc(1.1rem + 2px) !important;
+}
+
+// Scale the dark-mode icon down to roughly the title's size (default 20px). The svg is
+// absolutely positioned, so its vertical centering offset (top: 50% - half-height) must be
+// recomputed for the new 16px height.
+.darkmode {
+  width: 16px !important;
+
+  & svg {
+    width: 16px !important;
+    height: 16px !important;
+    top: calc(50% - 8px) !important;
+  }
+}
