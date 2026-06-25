@@ -11,3 +11,7 @@ private/
 replit.nix
 .quartz/
 quartz/cli/tui/dist/
+
+# Agent skills (installed via `npx skills add`)
+.agents/
+skills-lock.json
