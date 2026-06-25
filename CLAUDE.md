@@ -70,6 +70,21 @@ patching Quartz.
   For both cases, override with `!important` (see existing rules in `custom.scss` for the
   icon-only search button, resized title, and resized toolbar icons).
 
+## Intentional framework patches
+
+These deviate from upstream and may conflict on `npx quartz update` — re-apply if so:
+
+- **`quartz/components/Head.tsx`** — injects a small loader for **Pocket-Bird**
+  (`github.com/IdreesInc/Pocket-Bird`, MPL-2.0), a pixel-art bird pet. The embed is
+  self-hosted at `quartz/static/birb.embed.js` (served at `/static/birb.embed.js`). The
+  embed appends `#birb-shadow-host` to `<body>` once and is not SPA-aware, so the loader
+  re-attaches it on the `"nav"` event (fired on load + every SPA navigation) with a
+  duplicate guard.
+- **`quartz/static/birb.embed.js`** — vendored Pocket-Bird embed with one local edit: the
+  `DEFAULT_BIRD` constant is changed from `"bluebird"` to `"redWarbler"` (the default species
+  for new visitors). The chosen bird is stored per-browser in `localStorage["birbSaveData"]`,
+  so changing the default only affects browsers with no saved data yet.
+
 ## Git & deploy
 
 - Branch `main`. Remote `upstream` → Quartz (for `npx quartz update`); the user's own

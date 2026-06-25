@@ -106,6 +106,16 @@ export default (() => {
             return resource
           }
         })}
+
+        {/* Pocket-Bird (https://github.com/IdreesInc/Pocket-Bird, MPL-2.0): a pixel-art bird
+            pet. Self-hosted at quartz/static/birb.embed.js. The embed appends a #birb-shadow-host
+            to <body> once and has no SPA awareness, so we (re)inject it on Quartz's "nav" event
+            (fired on initial load + every SPA navigation) and guard against duplicates. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){function b(){if(document.getElementById("birb-shadow-host"))return;var s=document.createElement("script");s.src="/static/birb.embed.js";document.body.appendChild(s);}document.addEventListener("nav",b);window.addEventListener("load",b);})();`,
+          }}
+        />
       </head>
     )
   }
