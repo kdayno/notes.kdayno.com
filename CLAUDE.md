@@ -91,5 +91,7 @@ These deviate from upstream and may conflict on `npx quartz update` — re-apply
   `origin` (GitHub repo `notes.kdayno.com`) is added separately when publishing.
 - `.gitignore` ignores `public/`, `node_modules`, `.quartz-cache`, and (notably) `.gitignore`
   itself.
-- Deploy target: **Vercel** — Framework `Other`, Build `npx quartz build`, Output `public`,
-  Install `npm install`.
+- Deploy target: **Vercel** — Framework `Other`, Output `public`, Install `npm install`, and
+  Build Command **`npx quartz plugin install && npx quartz build`** (NOT just `npx quartz build`).
+  `.quartz/` (installed plugins) is gitignored, so they're absent on Vercel's fresh clone and must
+  be installed during the build, else the build stalls right after the `Quartz vX.Y.Z` banner.
