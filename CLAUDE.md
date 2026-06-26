@@ -80,10 +80,14 @@ These deviate from upstream and may conflict on `npx quartz update` — re-apply
   embed appends `#birb-shadow-host` to `<body>` once and is not SPA-aware, so the loader
   re-attaches it on the `"nav"` event (fired on load + every SPA navigation) with a
   duplicate guard.
-- **`quartz/static/birb.embed.js`** — vendored Pocket-Bird embed with one local edit: the
-  `DEFAULT_BIRD` constant is changed from `"bluebird"` to `"redWarbler"` (the default species
-  for new visitors). The chosen bird is stored per-browser in `localStorage["birbSaveData"]`,
-  so changing the default only affects browsers with no saved data yet.
+- **`quartz/static/birb.embed.js`** — vendored Pocket-Bird embed with **three custom edits** to the
+  bundled code (re-apply these if the embed is ever re-downloaded from the CDN; Pocket-Bird exposes
+  no config/toggle for any of them):
+  1. `DEFAULT_BIRD` changed from `"bluebird"` to `"redWarbler"` — default species for new visitors.
+     Stored per-browser in `localStorage["birbSaveData"]`, so it only affects browsers with no
+     saved data yet.
+  2. `LocalContext.getFeatherChanceMod()` return `4` → `0` — disables random feather spawning.
+  3. `LocalContext.getHatChanceMod()` return `2` → `0` — disables random hat/wardrobe spawning.
 
 ## Git & deploy
 
