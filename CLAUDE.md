@@ -99,3 +99,10 @@ These deviate from upstream and may conflict on `npx quartz update` — re-apply
   Build Command **`npx quartz plugin install && npx quartz build`** (NOT just `npx quartz build`).
   `.quartz/` (installed plugins) is gitignored, so they're absent on Vercel's fresh clone and must
   be installed during the build, else the build stalls right after the `Quartz vX.Y.Z` banner.
+- **Vercel build cache must be disabled.** Set project env var **`VERCEL_FORCE_NO_BUILD_CACHE=1`**
+  (Production + Preview). Vercel's build cache restores a stale `.quartz/` between builds, and
+  `npx quartz plugin install` then fails to *update* the cached plugin checkouts (`41 of 44 failed
+  to update` → `No matching export … CustomOgImagesEmitterName` build error). Disabling the cache
+  makes every build fresh (like the first deploy), which is the documented-command-preserving fix.
+  This can ONLY be a project env var — not `vercel.json` — because the cache is restored *before*
+  the build command runs. (Quartz's lockfile-keyed `.quartz/plugins` cache is GitHub-Actions only.)
