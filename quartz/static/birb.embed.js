@@ -1843,12 +1843,12 @@
 
 		/** @override */
 		getFeatherChanceMod() {
-			return 4;
+			return 0; // feather spawning disabled for this site (upstream default: 4)
 		}
 
 		/** @override */
 		getHatChanceMod() {
-			return 2;
+			return 0; // hat/wardrobe spawning disabled for this site (upstream default: 2)
 		}
 	}
 
