@@ -41,3 +41,18 @@
     top: calc(50% - 8px) !important;
   }
 }
+
+// Self-hosted Maragsa (free Display version by Jad Maza) — a handwritten typeface used only
+// for note metadata, so it stands apart from the body font (like jzhao.xyz's dates).
+@font-face {
+  font-family: "Maragsa";
+  src: url("/static/fonts/Maragsa.woff2") format("woff2");
+  font-display: swap;
+}
+
+// Apply Maragsa to the date + read-time on note pages (.content-meta) and the per-note
+// dates in folder/tag listings (.page-listing .meta). !important to beat the body font.
+.content-meta,
+.page-listing .meta {
+  font-family: "Maragsa", var(--bodyFont) !important;
+}
