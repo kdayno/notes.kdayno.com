@@ -42,11 +42,11 @@
   }
 }
 
-// Self-hosted Maragsa (free Wide cut by Jad Maza) — a handwritten typeface used only for
+// Self-hosted Maragsa (free Narrow cut by Jad Maza) — a handwritten typeface used only for
 // note metadata, so it stands apart from the body font (like jzhao.xyz's dates).
 @font-face {
   font-family: "Maragsa";
-  src: url("/static/fonts/Maragsa-Wide.woff2") format("woff2");
+  src: url("/static/fonts/Maragsa-Narrow.woff2") format("woff2");
   font-display: swap;
 }
 

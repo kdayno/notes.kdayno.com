@@ -46,7 +46,7 @@ patching Quartz.
   `plugins:` list, and the `layout:` section. This is the v5 YAML config — **not** the v4
   `quartz.config.ts`. `quartz.config.default.yaml` is the upstream template; don't edit it.
 - **`quartz/styles/custom.scss`** — the one intended place for custom CSS (per Quartz docs). Also
-  holds an `@font-face` for the self-hosted **Maragsa** font (`quartz/static/fonts/Maragsa-Wide.woff2`,
+  holds an `@font-face` for the self-hosted **Maragsa** font (`quartz/static/fonts/Maragsa-Narrow.woff2`,
   free/webfont-licensed) applied to note metadata only (`.content-meta`, `.page-listing .meta`).
 - **`vercel.json`** — deploy config (`cleanUrls`).
 
