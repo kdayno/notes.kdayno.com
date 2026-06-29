@@ -110,10 +110,13 @@ export default (() => {
         {/* Pocket-Bird (https://github.com/IdreesInc/Pocket-Bird, MPL-2.0): a pixel-art bird
             pet. Self-hosted at quartz/static/birb.embed.js. The embed appends a #birb-shadow-host
             to <body> once and has no SPA awareness, so we (re)inject it on Quartz's "nav" event
-            (fired on initial load + every SPA navigation) and guard against duplicates. */}
+            (initial load + every SPA navigation) and on window load. The guard checks the injected
+            <script id="birb-embed"> (set synchronously) rather than #birb-shadow-host (which the
+            embed creates async), so the nav+load double-fire can't inject the script twice. On SPA
+            nav, micromorph wipes the body (removing both), so we cleanly re-inject. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){function b(){if(document.getElementById("birb-shadow-host"))return;var s=document.createElement("script");s.src="/static/birb.embed.js";document.body.appendChild(s);}document.addEventListener("nav",b);window.addEventListener("load",b);})();`,
+            __html: `(function(){function b(){if(document.getElementById("birb-embed")||document.getElementById("birb-shadow-host"))return;var s=document.createElement("script");s.id="birb-embed";s.src="/static/birb.embed.js";document.body.appendChild(s);}document.addEventListener("nav",b);window.addEventListener("load",b);})();`,
           }}
         />
       </head>
