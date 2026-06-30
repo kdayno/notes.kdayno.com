@@ -1,5 +1,5 @@
 ---
-title: kd
+title: Notes by kdayno
 ---
 ![](./images/japanese-maple-leaves.gif)
 <br>
