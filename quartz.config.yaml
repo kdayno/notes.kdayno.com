@@ -19,7 +19,9 @@ configuration:
       header:
         name: DM Serif Display
         weights: [400] # DM Serif Display ships only a 400 weight (no 700)
-      body: Bricolage Grotesque
+      body:
+        name: Bricolage Grotesque
+        weights: [300, 400, 600] # 300 = "light", used by the footer link
       code: JetBrains Mono
     # Palette matched to jzhao.xyz ("komorebi" theme): warm cream light mode, deep-navy dark mode.
     colors:
@@ -208,7 +210,7 @@ plugins:
       priority: 35
       group: toolbar
   - source: github:quartz-community/breadcrumbs
-    enabled: true
+    enabled: false
     layout:
       position: beforeBody
       priority: 5
@@ -225,8 +227,7 @@ plugins:
     enabled: true
     options:
       links:
-        GitHub: https://github.com/jackyzha0/quartz
-        Discord Community: https://discord.gg/cRFFHYye7t
+        Acknowledgements: /acknowledgements
   - source: github:quartz-community/recent-notes
     enabled: false
   - source: github:quartz-community/spacer

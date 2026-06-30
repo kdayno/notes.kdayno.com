@@ -70,3 +70,31 @@
 .article-title {
   font-family: "Maragsa Medium", var(--headerFont) !important;
 }
+
+// Footer: hide the hardcoded "Created with Quartz …" credit line (the footer plugin renders it
+// unconditionally and exposes no option to remove it). The footer then shows only the
+// Acknowledgements link; the credits themselves live on /acknowledgements.
+footer > p {
+  display: none !important;
+}
+
+// Footer Acknowledgements link: smaller + a light (300) weight of the body font.
+// (Weight 300 of Bricolage Grotesque is loaded via theme.typography.body in quartz.config.yaml.)
+footer {
+  font-size: 0.85rem !important;
+  font-weight: 300 !important;
+}
+
+// Hide the Acknowledgements page from the left Explorer file tree (the plugin's
+// excludePathPrefixes option is declared but unimplemented in this version). The page stays
+// reachable via the footer link — this only removes its entry from the sidebar tree.
+.explorer li:has(> a[href*="acknowledgements"]) {
+  display: none !important;
+}
+
+// Hide the date + reading-time (content-meta) on the Acknowledgements page only. The
+// content-meta plugin has no per-page disable (only global showReadingTime/showComma), so we
+// scope to this one page via Quartz's body[data-slug] hook.
+body[data-slug="acknowledgements"] .content-meta {
+  display: none !important;
+}
