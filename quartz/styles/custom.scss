@@ -22,10 +22,11 @@
   }
 }
 
-// Shrink the site title (default 1.75rem) so it fits on one row with the toolbar icons
-// instead of pushing them off the edge of the left sidebar. !important beats the
-// page-title component CSS, which loads after this file.
+// Sidebar site title: Maragsa Medium (reuses the @font-face declared below for note titles),
+// shrunk from the default 1.75rem so it fits on one row with the toolbar icons.
+// !important beats the page-title component CSS, which loads after this file.
 .page-title {
+  font-family: "Maragsa Medium", var(--titleFont) !important;
   font-size: calc(1.1rem + 2px) !important;
 }
 
@@ -56,5 +57,16 @@
 .content-meta,
 .page-listing .meta {
   font-family: "Maragsa", var(--bodyFont) !important;
-  font-size: 1.1em !important;
+  font-size: 1.5em !important;
+}
+
+// Maragsa Medium cut for note titles (the <h1 class="article-title"> on note pages).
+// !important beats the base heading rule (base.scss: h1 { font-family: var(--headerFont) }).
+@font-face {
+  font-family: "Maragsa Medium";
+  src: url("/static/fonts/Maragsa-Medium.woff2") format("woff2");
+  font-display: swap;
+}
+.article-title {
+  font-family: "Maragsa Medium", var(--headerFont) !important;
 }
